@@ -42,13 +42,16 @@ export default function SavingsDashboard() {
   // Calculate DCA projection (5 years, 1.5% APY rough estimate)
   const dcaProjectionData = Array.from({ length: 5 }, (_, i) => {
     const year = new Date().getFullYear() + i + 1;
-    // rough approximation for smooth curve
-    const months = (i + 1) * 12;
-    const totalPrincipal = dcaAmount * months;
-    const estimatedInterest = totalPrincipal * 0.015 * (i + 1); 
+    const annualContribution = dcaAmount * 12;
+    const rate = 0.015;
+    const n = i + 1; // Number of years
+
+    // Future Value of an Annuity Due formula for annual contributions
+    const total = annualContribution * ((Math.pow(1 + rate, n) - 1) / rate) * (1 + rate);
+
     return {
       year: year.toString(),
-      total: totalPrincipal + estimatedInterest,
+      total: total,
     };
   });
 
