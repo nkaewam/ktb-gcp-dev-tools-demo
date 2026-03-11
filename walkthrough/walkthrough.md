@@ -14,6 +14,6 @@ This walkthrough demonstrates the UI flow from login to dashboard interactions, 
 
 ## Key Observations
 
-1. **Dynamic Scaling**: The DCA projection graph automatically adjusts its Y-axis as contribution amounts change.
+1. **Dynamic Scaling**: The DCA projection graph automatically adjusts its Y-axis as contribution amounts change (increased from ฿5,000 to ฿8,000).
 2. **Interactive Modals**: Clicking on proof images opens a clean modal view for detailed inspection.
 3. **Smooth Transitions**: The transition from login to the dashboard is rapid and responsive.
