@@ -19,6 +19,7 @@ import {
   Minus,
   Sparkle
 } from "@phosphor-icons/react/dist/ssr";
+import { WireTransferHistory } from "@/components/wire-transfer-history";
 
 const SPRING_TRANSITION = { type: "spring" as const, stiffness: 100, damping: 20 };
 
@@ -241,6 +242,9 @@ export default function SavingsDashboard() {
             </motion.div>
 
           </div>
+
+          {/* Row 3: Image History */}
+          <WireTransferHistory />
         </div>
       </div>
     </div>
