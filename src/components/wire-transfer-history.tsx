@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -47,6 +47,16 @@ const SlipPlaceholder = ({ date, amount, time, className }: { date: string, amou
 );
 
 export function WireTransferHistory() {
+  const extraSlips = useMemo(() => {
+    return [...Array(6)].map((_, i) => ({
+      id: `extra-${i}`,
+      date: `${20 - i} Feb 2024`,
+      amount: `฿${(Math.random() * 5000 + 1000).toLocaleString()}.00`,
+      time: "12:00",
+      className: "aspect-[3/4.5] grayscale opacity-40 hover:grayscale-0 hover:opacity-100",
+    }));
+  }, []);
+
   return (
     <Card className="rounded-[2.5rem] border-slate-200/50 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] overflow-hidden h-full">
       <CardHeader className="p-8 pb-4">
@@ -92,14 +102,13 @@ export function WireTransferHistory() {
               {MOCK_SLIPS.map((slip) => (
                 <SlipPlaceholder key={slip.id} {...slip} className="aspect-[3/4.5]" />
               ))}
-              {/* Additional mocked slips for 3x2 grid demonstration */}
-              {[...Array(6)].map((_, i) => (
+              {extraSlips.map((slip) => (
                 <SlipPlaceholder 
-                  key={`extra-${i}`} 
-                  date={`${20 - i} Feb 2024`} 
-                  amount={`฿${(Math.random() * 5000 + 1000).toLocaleString()}.00`} 
-                  time="12:00" 
-                  className="aspect-[3/4.5] grayscale opacity-40 hover:grayscale-0 hover:opacity-100"
+                  key={slip.id} 
+                  date={slip.date} 
+                  amount={slip.amount} 
+                  time={slip.time} 
+                  className={slip.className}
                 />
               ))}
             </div>
